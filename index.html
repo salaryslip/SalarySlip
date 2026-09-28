@@ -2199,7 +2199,7 @@
       eyeIcon.style.display = "block";
     });
 
-    const API_URL = 'https://script.google.com/macros/s/AKfycbwMULm2hVLYuVMsD5m1dT9FsQuC1uiL6oQwugVWD2B5hRIc8NUfQaazYbdhzAvWcYiD/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbw-7l-vHQNHWWM9cOgqLg3hLJvvt8NaAjBD2ybA2l36ryNtVeQ-qFZTw1OoUTDOH7RsDw/exec';
 
     async function apiRequest(payload){
       const response = await fetch(API_URL, {
@@ -2649,76 +2649,73 @@
       }, 150);
     }
 
-// ===== 100% RELIABLE DIRECT PDF GENERATOR =====
-    function downloadPdfSlip(btnEl) {
-      if (!slipData) {
-        alert(currentLang === 'en' ? 'No data available to download PDF' : 'PDF साठी माहिती उपलब्ध नाही');
-        return;
+/// ===== 100% BULLETPROOF SERVER-SIDE PDF DOWNLOAD (WORKS ON ALL BROWSERS) =====
+async function downloadPdfSlip(btnEl) {
+  if (!slipData) {
+    alert(currentLang === 'en' ? 'No data available to download PDF' : 'PDF साठी माहिती उपलब्ध नाही');
+    return;
+  }
+
+  const originalText = btnEl.innerHTML;
+  btnEl.disabled = true;
+  btnEl.innerHTML = '<span class="btn-spinner"></span> ' + (currentLang === 'en' ? 'Downloading...' : 'डाऊनलोड होत आहे...');
+
+  const filename = `SalarySlip_${slipData.EmployeeID}_${slipData.Month}_${slipData.Year}.pdf`;
+  const rawHtml = generatePrintHtml();
+
+  try {
+    // १. गुगल सर्व्हरकडून थेट उच्च दर्जाची PDF मागवणे
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        action: 'generatePdf',
+        html: `<!DOCTYPE html><html><head><meta charset="utf-8"><style>@page{size:A4 portrait;margin:8mm;}body{margin:0;font-family:sans-serif;}</style></head><body>${rawHtml}</body></html>`,
+        filename: filename
+      })
+    });
+
+    const res = await response.json();
+
+    if (res && res.success && res.pdfBase64) {
+      // २. बेस६४ स्ट्रिंगचे बायनरी ब्लॉब (Blob) मध्ये रूपांतर
+      const byteCharacters = atob(res.pdfBase64);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'application/octet-stream' });
 
-      const originalText = btnEl.innerHTML;
-      btnEl.disabled = true;
-      btnEl.innerHTML = '<span class="btn-spinner"></span> ' + (currentLang === 'en' ? 'Downloading...' : 'डाऊनलोड होत आहे...');
+      // ३. थेट डाऊनलोड ट्रिगर करणे
+      const blobUrl = window.URL.createObjectURL(blob);
+      const downloadLink = document.createElement('a');
+      downloadLink.style.display = 'none';
+      downloadLink.href = blobUrl;
+      downloadLink.download = filename;
+      document.body.appendChild(downloadLink);
+      
+      downloadLink.click();
 
-      const printHtml = generatePrintHtml();
-
-      // Create on-screen container (at bottom of body) with visibility preserved
-      const container = document.createElement('div');
-      container.id = 'activePdfRenderer';
-      container.style.position = 'absolute';
-      container.style.left = '0';
-      container.style.top = (document.body.scrollHeight + 100) + 'px';
-      container.style.width = '780px';
-      container.style.background = '#ffffff';
-      container.style.zIndex = '99999';
-      container.innerHTML = printHtml;
-      document.body.appendChild(container);
-
-      const targetEl = container.querySelector('#salarySlipContent') || container;
-
-      const opt = {
-        margin:       [0.2, 0.2, 0.2, 0.2],
-        filename:     `SalarySlip_${slipData.EmployeeID}_${slipData.Month}_${slipData.Year}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { 
-          scale: 1.8,
-          useCORS: true,
-          logging: false,
-          scrollY: 0,
-          scrollX: 0,
-          windowWidth: 800
-        },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-      };
-
-      // Give QR code canvas time to settle
       setTimeout(() => {
-        if (typeof html2pdf !== 'undefined') {
-          html2pdf().set(opt).from(targetEl).save().then(() => {
-            if (document.body.contains(container)) {
-              container.remove();
-            }
-            btnEl.disabled = false;
-            btnEl.innerHTML = originalText;
-          }).catch(err => {
-            console.error('PDF library failed:', err);
-            if (document.body.contains(container)) {
-              container.remove();
-            }
-            btnEl.disabled = false;
-            btnEl.innerHTML = originalText;
-            showPrintSlip();
-          });
-        } else {
-          if (document.body.contains(container)) {
-            container.remove();
-          }
-          btnEl.disabled = false;
-          btnEl.innerHTML = originalText;
-          showPrintSlip();
-        }
-      }, 350);
+        window.URL.revokeObjectURL(blobUrl);
+        downloadLink.remove();
+        btnEl.disabled = false;
+        btnEl.innerHTML = originalText;
+      }, 300);
+
+    } else {
+      throw new Error(res.message || 'Server PDF conversion failed');
     }
+
+  } catch (error) {
+    console.error('Server PDF download failed, falling back:', error);
+    btnEl.disabled = false;
+    btnEl.innerHTML = originalText;
+    // सर्व्हर व्यस्त असल्यास ब्राऊझरचा मूळ पर्याय
+    showPrintSlip();
+  }
+}
   </script>
 </body>
 </html>
