@@ -6,14 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teacher Salary Slip Portal | शिक्षक वेतन पत्रक पोर्टल</title>
   <!-- Website Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="./graduation-hat.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./graduation-hat.png">
-<link rel="apple-touch-icon" href="./graduation-hat.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./graduation-hat.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./graduation-hat.png">
+  <link rel="apple-touch-icon" href="./graduation-hat.png">
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
     :root {
@@ -430,7 +429,7 @@
 
     /* =========================================================
        METRICS SECTION
-       ========================================================= */
+       ======================================================== */
     .metrics-section {
       width: min(1140px, 94%);
       margin: -50px auto 40px;
@@ -1172,6 +1171,7 @@
       text-align: center;
       padding: 40px 20px;
       font-size: 0.88rem;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
     }
 
     .modern-footer .footer-title {
@@ -1179,6 +1179,11 @@
       font-size: 1.15rem;
       font-weight: 800;
       letter-spacing: -0.01em;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+    }
+
+    .modern-footer p {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
     }
 
     .modern-footer .designer {
@@ -2349,12 +2354,12 @@
 
       const html = `
         <div class="summary-card" id="summaryInner" role="region" aria-live="polite" aria-label="Salary slip summary">
-          <h3 style="margin:4px 0 12px; font-size:1.15rem; color:var(--text-main);">${escapeHtml(r.Name || '')} <span style="font-size:0.85rem; color:var(--text-muted);">(${escapeHtml(r.EmployeeID || '')})</span></h3>
-          <p style="font-size:0.85rem; margin-bottom:6px;"><strong>${isEn?'Month':'महिना'}:</strong> ${escapeHtml(r.Month||'')} &nbsp;&bull;&nbsp; <strong>${isEn?'Year':'वर्ष'}:</strong> ${escapeHtml(r.Year||'')}</p>
-          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;"><strong>${isEn?'Gross Salary':'एकूण वेतन'}:</strong> ₹${escapeHtml(r.GrossSalary||'0')} &nbsp;&bull;&nbsp; <strong>${isEn?'Deductions':'एकूण कपात'}:</strong> ₹${escapeHtml(r.TotalDeductions||'0')}</p>
+          <h3 style="margin:4px 0 12px; font-size:1.15rem; color:var(--text-main); font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;">${escapeHtml(r.Name || '')} <span style="font-size:0.85rem; color:var(--text-muted);">(${escapeHtml(r.EmployeeID || '')})</span></h3>
+          <p style="font-size:0.85rem; margin-bottom:6px; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;"><strong>${isEn?'Month':'महिना'}:</strong> ${escapeHtml(r.Month||'')} &nbsp;&bull;&nbsp; <strong>${isEn?'Year':'वर्ष'}:</strong> ${escapeHtml(r.Year||'')}</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;"><strong>${isEn?'Gross Salary':'एकूण वेतन'}:</strong> ₹${escapeHtml(r.GrossSalary||'0')} &nbsp;&bull;&nbsp; <strong>${isEn?'Deductions':'एकूण कपात'}:</strong> ₹${escapeHtml(r.TotalDeductions||'0')}</p>
           <div style="background:#f1f5f9; padding:10px; margin:12px 0; border-radius:10px; border: 1px solid var(--border-color);">
-            <h3 style="color:#16a34a; font-size:1.1rem;">${isEn?'Net Salary':'निव्वळ वेतन'}: ₹${escapeHtml(r.NetSalary||'0')}</h3>
-            <p style="font-size:0.75rem; color:#475569; margin-top:2px;"><strong>${isEn?'In Words':'अक्षरी'}:</strong> ${escapeHtml(inWords)}</p>
+            <h3 style="color:#16a34a; font-size:1.1rem; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;">${isEn?'Net Salary':'निव्वळ वेतन'}: ₹${escapeHtml(r.NetSalary||'0')}</h3>
+            <p style="font-size:0.75rem; color:#475569; margin-top:2px; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;"><strong>${isEn?'In Words':'अक्षरी'}:</strong> ${escapeHtml(inWords)}</p>
           </div>
           <div class="action-group">
             <button onclick="showPrintSlip()" class="btn-action btn-sm" style="background:#16a34a;">
@@ -2453,7 +2458,7 @@
       const maxRows = Math.max(allowances.length, Math.ceil(deductions.length / 3));
       for(let i = 0; i < maxRows; i++){
         const a = allowances[i] ? `<td>${allowances[i][0]}</td><td>₹${escapeHtml(getVal(allowances[i][1]))}</td>` : "<td></td><td></td>";
-       
+        
         const d1 = deductions[i * 3] || [null, null];
         const d2 = deductions[i * 3 + 1] || [null, null];
         const d3 = deductions[i * 3 + 2] || [null, null];
@@ -2498,7 +2503,7 @@
       `;
 
       const metaHtml = isEn ? `
-        <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-style:space-between; font-size:12px;">
+        <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-content:space-between; font-size:12px;">
           <div style="width:42%;">
             <p style="margin:2px 0;"><strong>Month:</strong> ${escapeHtml(slipData.Month||'')}</p>
             <p style="margin:2px 0;"><strong>Year:</strong> ${escapeHtml(slipData.Year||'')}</p>
@@ -2519,7 +2524,7 @@
           </div>
         </div>
       ` : `
-        <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-style:space-between; font-size:12px;">
+        <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-content:space-between; font-size:12px;">
           <div style="width:42%;">
             <p style="margin:2px 0;"><strong>महिना:</strong> ${escapeHtml(slipData.Month||'')}</p>
             <p style="margin:2px 0;"><strong>वर्ष:</strong> ${escapeHtml(slipData.Year||'')}</p>
@@ -2576,11 +2581,13 @@
         'हे संगणक प्रणालीद्वारे तयार केलेले वेतन पत्रक असल्याने यावर स्वाक्षरीची आवश्यकता नाही.';
 
       return `
-        <div id="salarySlipContent" style="font-family:'Noto Sans Devanagari', Arial, sans-serif; font-size:12px; color:#000; background:#fff; padding:10px; width:750px; margin:0 auto;">
+        <div id="salarySlipContent" style="font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', Arial, sans-serif; font-size:12px; color:#000; background:#fff; padding:10px; width:750px; margin:0 auto; box-sizing:border-box;">
           <style>
-            .pdf-table { width:100%; border-collapse:collapse; border:2px solid #1976d2; margin-top:10px; }
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+            #salarySlipContent, #salarySlipContent * { font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', Arial, sans-serif !important; }
+            .pdf-table { width:100%; border-collapse:collapse; border:2px solid #1976d2; margin-top:10px; font-family:'Noto Sans Devanagari', Arial, sans-serif; }
             .pdf-table th, .pdf-table td { padding:5px 6px; font-size:11px; }
-            .pdf-table thead th { background:#e3f2fd; border-bottom:2px solid #1976d2; text-align:center; font-weight:600; }
+            .pdf-table thead th { background:#e3f2fd; border-bottom:2px solid #1976d2; text-align:center; font-weight:600; color:#1a237e; }
             .pdf-table tbody td { border-bottom:1px dotted #1976d2; }
             .pdf-table th, .pdf-table td { border-left:none; border-right:none; }
             .pdf-table thead th:nth-child(2) { border-right:1px solid #1976d2; }
@@ -2588,18 +2595,18 @@
             .pdf-table tbody td:nth-child(1), .pdf-table tbody td:nth-child(2) { text-align:left; }
             .pdf-table tbody td:nth-child(n+3) { text-align:right; }
             .pdf-table tbody tr:last-child td { font-weight:700; background:#f1f8ff; border-top:2px solid #1976d2; }
-            .net-box { margin-top:14px; padding:10px; background:#f5f5f5; border:1.5px solid #999; border-radius:6px; text-align:center; }
+            .net-box { margin-top:14px; padding:10px; background:#f5f5f5; border:1.5px solid #999; border-radius:6px; text-align:center; font-family:'Noto Sans Devanagari', Arial, sans-serif; }
             .net-box h3 { margin:0; font-size:15px; font-weight:700; color:#16a34a; }
             .net-box p { margin:4px 0 0; font-size:13px; color:#333; }
             .footer {
-              margin-top:20px;
-              font-family: 'Space Mono', monospace;
+              margin-top: 20px;
+              font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', Arial, sans-serif;
               font-size: 10px;
-              color: #777;
+              color: #64748b;
               padding-top: 10px;
               text-align: center;
-              letter-spacing: 0.5px;
-              border-top:1px dotted #999;
+              letter-spacing: 0.3px;
+              border-top: 1px dotted #999;
             }
             .qr-box { text-align:center; }
             .qr-box img { height:90px; width:90px; }
@@ -2640,82 +2647,114 @@
 
       const doc = printIframe.contentWindow.document;
       doc.open();
-      doc.write('<!DOCTYPE html><html><head><title>Print Slip</title></head><body>' + printHtml + '</body></html>');
+      doc.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Print Slip</title>
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+          <style>
+            @page { size: A4 portrait; margin: 8mm; }
+            body { margin: 0; padding: 0; font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', Arial, sans-serif; }
+          </style>
+        </head>
+        <body>${printHtml}</body>
+        </html>
+      `);
       doc.close();
 
       setTimeout(() => {
         printIframe.contentWindow.focus();
         printIframe.contentWindow.print();
-      }, 150);
+      }, 300);
     }
 
-/// ===== 100% BULLETPROOF SERVER-SIDE PDF DOWNLOAD (WORKS ON ALL BROWSERS) =====
-async function downloadPdfSlip(btnEl) {
-  if (!slipData) {
-    alert(currentLang === 'en' ? 'No data available to download PDF' : 'PDF साठी माहिती उपलब्ध नाही');
-    return;
-  }
-
-  const originalText = btnEl.innerHTML;
-  btnEl.disabled = true;
-  btnEl.innerHTML = '<span class="btn-spinner"></span> ' + (currentLang === 'en' ? 'Downloading...' : 'डाऊनलोड होत आहे...');
-
-  const filename = `SalarySlip_${slipData.EmployeeID}_${slipData.Month}_${slipData.Year}.pdf`;
-  const rawHtml = generatePrintHtml();
-
-  try {
-    // १. गुगल सर्व्हरकडून थेट उच्च दर्जाची PDF मागवणे
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        action: 'generatePdf',
-        html: `<!DOCTYPE html><html><head><meta charset="utf-8"><style>@page{size:A4 portrait;margin:8mm;}body{margin:0;font-family:sans-serif;}</style></head><body>${rawHtml}</body></html>`,
-        filename: filename
-      })
-    });
-
-    const res = await response.json();
-
-    if (res && res.success && res.pdfBase64) {
-      // २. बेस६४ स्ट्रिंगचे बायनरी ब्लॉब (Blob) मध्ये रूपांतर
-      const byteCharacters = atob(res.pdfBase64);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    // ===== 100% BULLETPROOF SERVER-SIDE PDF DOWNLOAD (WITH DEVANAGARI FONT) =====
+    async function downloadPdfSlip(btnEl) {
+      if (!slipData) {
+        alert(currentLang === 'en' ? 'No data available to download PDF' : 'PDF साठी माहिती उपलब्ध नाही');
+        return;
       }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: 'application/octet-stream' });
 
-      // ३. थेट डाऊनलोड ट्रिगर करणे
-      const blobUrl = window.URL.createObjectURL(blob);
-      const downloadLink = document.createElement('a');
-      downloadLink.style.display = 'none';
-      downloadLink.href = blobUrl;
-      downloadLink.download = filename;
-      document.body.appendChild(downloadLink);
-      
-      downloadLink.click();
+      const originalText = btnEl.innerHTML;
+      btnEl.disabled = true;
+      btnEl.innerHTML = '<span class="btn-spinner"></span> ' + (currentLang === 'en' ? 'Downloading...' : 'डाऊनलोड होत आहे...');
 
-      setTimeout(() => {
-        window.URL.revokeObjectURL(blobUrl);
-        downloadLink.remove();
+      const filename = `SalarySlip_${slipData.EmployeeID}_${slipData.Month}_${slipData.Year}.pdf`;
+      const rawHtml = generatePrintHtml();
+
+      // गुगल सर्व्हरला मराठी फॉन्टसह संपूर्ण HTML डॉक्युमेंट पाठवणे
+      const fullServerHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+          <style>
+            @page { size: A4 portrait; margin: 8mm; }
+            * { box-sizing: border-box; }
+            body { margin: 0; padding: 0; font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', Arial, sans-serif; background: #ffffff; }
+          </style>
+        </head>
+        <body>
+          ${rawHtml}
+        </body>
+        </html>
+      `;
+
+      try {
+        // १. गुगल सर्व्हरकडून थेट उच्च दर्जाची PDF मागवणे
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'generatePdf',
+            html: fullServerHtml,
+            filename: filename
+          })
+        });
+
+        const res = await response.json();
+
+        if (res && res.success && res.pdfBase64) {
+          // २. बेस६४ स्ट्रिंगचे बायनरी ब्लॉब (Blob) मध्ये रूपांतर
+          const byteCharacters = atob(res.pdfBase64);
+          const byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+          }
+          const byteArray = new Uint8Array(byteNumbers);
+          const blob = new Blob([byteArray], { type: 'application/octet-stream' });
+
+          // ३. थेट डाऊनलोड ट्रिगर करणे
+          const blobUrl = window.URL.createObjectURL(blob);
+          const downloadLink = document.createElement('a');
+          downloadLink.style.display = 'none';
+          downloadLink.href = blobUrl;
+          downloadLink.download = filename;
+          document.body.appendChild(downloadLink);
+          
+          downloadLink.click();
+
+          setTimeout(() => {
+            window.URL.revokeObjectURL(blobUrl);
+            downloadLink.remove();
+            btnEl.disabled = false;
+            btnEl.innerHTML = originalText;
+          }, 300);
+
+        } else {
+          throw new Error(res.message || 'Server PDF conversion failed');
+        }
+
+      } catch (error) {
+        console.error('Server PDF download failed, falling back:', error);
         btnEl.disabled = false;
         btnEl.innerHTML = originalText;
-      }, 300);
-
-    } else {
-      throw new Error(res.message || 'Server PDF conversion failed');
+        // सर्व्हर व्यस्त असल्यास ब्राऊझरचा मूळ पर्याय
+        showPrintSlip();
+      }
     }
-
-  } catch (error) {
-    console.error('Server PDF download failed, falling back:', error);
-    btnEl.disabled = false;
-    btnEl.innerHTML = originalText;
-    // सर्व्हर व्यस्त असल्यास ब्राऊझरचा मूळ पर्याय
-    showPrintSlip();
-  }
-}
   </script>
 </body>
 </html>
