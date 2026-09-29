@@ -2502,45 +2502,53 @@
         </div>
       `;
 
-      const metaHtml = isEn ? `
+const metaHtml = isEn ? `
         <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-content:space-between; font-size:12px;">
           <div style="width:42%;">
-            <p style="margin:2px 0;"><strong>Month:</strong> ${escapeHtml(slipData.Month||'')} ${escapeHtml(slipData.Year||'')}</p>
-            <p style="margin:2px 0;"><strong>Shalarth ID:</strong> ${escapeHtml(slipData.Shalarth_ID||'')}</p>
-            <p style="margin:2px 0;"><strong>Name:</strong> ${escapeHtml(slipData.Name||'')}</p>
-            <p style="margin:2px 0;"><strong>Designation:</strong> ${escapeHtml(slipData.Designation||'')}</p>
-            <p style="margin:2px 0;"><strong>PF / PRAN No:</strong> ${escapeHtml(slipData.PFNo||'')}</p>
+            <table style="width:100%; border-collapse:collapse; border:none;">
+              <tr><td style="padding:2px 0; width:105px; font-weight:bold;">Month</td><td style="width:12px; font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Month||'')} ${escapeHtml(slipData.Year||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">Shalarth ID</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Shalarth_ID||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">Name</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Name||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">Designation</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Designation||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">PF / PRAN No</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.PFNo||'')}</td></tr>
+            </table>
           </div>
           <div style="width:42%;">
-            <p style="margin:2px 0;"><strong>School:</strong> ${escapeHtml(slipData.School||'')}</p>
-            <p style="margin:2px 0;"><strong>UDISE:</strong> ${escapeHtml(slipData.UDISE||'')}</p>
-            <p style="margin:2px 0;"><strong>Cluster:</strong> ${escapeHtml(slipData.ClusterName||'')}</p>
-            <p style="margin:2px 0;"><strong>Account No:</strong> ${escapeHtml(slipData.AccountNumber||'')}</p>
-            <p style="margin:2px 0;"><strong>Bank Name:</strong> ${escapeHtml(slipData.BankName||'')}</p>
+            <table style="width:100%; border-collapse:collapse; border:none;">
+              <tr><td style="padding:2px 0; width:95px; font-weight:bold;">School</td><td style="width:12px; font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.School||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">UDISE</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.UDISE||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">Cluster</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.ClusterName||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">Account No</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.AccountNumber||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">Bank Name</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.BankName||'')}</td></tr>
+            </table>
           </div>
-          <div style="width:16%;" class="qr-box">
-            <img src="${qrBase64}" alt="QR Code">
+          <div style="width:16%; text-align:center;" class="qr-box">
+            <img src="${qrBase64}" alt="QR Code" style="height:85px; width:85px;">
             <div style="font-size:10px; margin-top:2px;">Scan to verify</div>
           </div>
         </div>
       ` : `
         <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-content:space-between; font-size:12px;">
           <div style="width:42%;">
-            <p style="margin:2px 0;"><strong>महिना:</strong> ${escapeHtml(slipData.Month||'')} ${escapeHtml(slipData.Year||'')}</p>
-            <p style="margin:2px 0;"><strong>शालार्थ ID:</strong> ${escapeHtml(slipData.Shalarth_ID||'')}</p>
-            <p style="margin:2px 0;"><strong>नाव:</strong> ${escapeHtml(slipData.Name||'')}</p>
-            <p style="margin:2px 0;"><strong>पद:</strong> ${escapeHtml(slipData.Designation||'')}</p>
-            <p style="margin:2px 0;"><strong>भनिनी / प्रान क्र:</strong> ${escapeHtml(slipData.PFNo||'')}</p>
+            <table style="width:100%; border-collapse:collapse; border:none;">
+              <tr><td style="padding:2px 0; width:110px; font-weight:bold;">महिना</td><td style="width:12px; font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Month||'')} ${escapeHtml(slipData.Year||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">शालार्थ ID</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Shalarth_ID||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">नाव</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Name||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">पद</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.Designation||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">भनिनी / प्रान क्र</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.PFNo||'')}</td></tr>
+            </table>
           </div>
           <div style="width:42%;">
-            <p style="margin:2px 0;"><strong>शाळा:</strong> ${escapeHtml(slipData.School||'')}</p>
-            <p style="margin:2px 0;"><strong>UDISE:</strong> ${escapeHtml(slipData.UDISE||'')}</p>
-            <p style="margin:2px 0;"><strong>केंद्र:</strong> ${escapeHtml(slipData.ClusterName||'')}</p>
-            <p style="margin:2px 0;"><strong>खाते क्र:</strong> ${escapeHtml(slipData.AccountNumber||'')}</p>
-            <p style="margin:2px 0;"><strong>बँकेचे नाव:</strong> ${escapeHtml(slipData.BankName||'')}</p>
+            <table style="width:100%; border-collapse:collapse; border:none;">
+              <tr><td style="padding:2px 0; width:85px; font-weight:bold;">शाळा</td><td style="width:12px; font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.School||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">UDISE</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.UDISE||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">केंद्र</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.ClusterName||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">खाते क्र</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.AccountNumber||'')}</td></tr>
+              <tr><td style="padding:2px 0; font-weight:bold;">बँकेचे नाव</td><td style="font-weight:bold;">:</td><td style="padding:2px 0;">${escapeHtml(slipData.BankName||'')}</td></tr>
+            </table>
           </div>
-          <div style="width:16%;" class="qr-box">
-            <img src="${qrBase64}" alt="QR Code">
+          <div style="width:16%; text-align:center;" class="qr-box">
+            <img src="${qrBase64}" alt="QR Code" style="height:85px; width:85px;">
             <div style="font-size:10px; margin-top:2px;">सत्यता पडताळा</div>
           </div>
         </div>
