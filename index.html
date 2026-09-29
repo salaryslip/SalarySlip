@@ -2505,8 +2505,8 @@
       const metaHtml = isEn ? `
         <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-content:space-between; font-size:12px;">
           <div style="width:42%;">
-            <p style="margin:2px 0;"><strong>Month:</strong> ${escapeHtml(slipData.Month||'')}</p>
-            <p style="margin:2px 0;"><strong>Year:</strong> ${escapeHtml(slipData.Year||'')}</p>
+            <p style="margin:2px 0;"><strong>Month:</strong> ${escapeHtml(slipData.Month||'')} ${escapeHtml(slipData.Year||'')}</p>
+            <p style="margin:2px 0;"><strong>Shalarth ID:</strong> ${escapeHtml(slipData.Shalarth_ID||'')}</p>
             <p style="margin:2px 0;"><strong>Name:</strong> ${escapeHtml(slipData.Name||'')}</p>
             <p style="margin:2px 0;"><strong>Designation:</strong> ${escapeHtml(slipData.Designation||'')}</p>
             <p style="margin:2px 0;"><strong>PF / PRAN No:</strong> ${escapeHtml(slipData.PFNo||'')}</p>
@@ -2526,8 +2526,8 @@
       ` : `
         <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-content:space-between; font-size:12px;">
           <div style="width:42%;">
-            <p style="margin:2px 0;"><strong>महिना:</strong> ${escapeHtml(slipData.Month||'')}</p>
-            <p style="margin:2px 0;"><strong>वर्ष:</strong> ${escapeHtml(slipData.Year||'')}</p>
+            <p style="margin:2px 0;"><strong>महिना:</strong> ${escapeHtml(slipData.Month||'')} ${escapeHtml(slipData.Year||'')}</p>
+            <p style="margin:2px 0;"><strong>शालार्थ ID:</strong> ${escapeHtml(slipData.Shalarth_ID||'')}</p>
             <p style="margin:2px 0;"><strong>नाव:</strong> ${escapeHtml(slipData.Name||'')}</p>
             <p style="margin:2px 0;"><strong>पद:</strong> ${escapeHtml(slipData.Designation||'')}</p>
             <p style="margin:2px 0;"><strong>भनिनी / प्रान क्र:</strong> ${escapeHtml(slipData.PFNo||'')}</p>
