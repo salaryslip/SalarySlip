@@ -2488,6 +2488,9 @@
     // ===== DYNAMIC BILINGUAL PRINTABLE & PDF GENERATOR =====
     function generatePrintHtml(){
       if(!slipData) return '';
+      // चालू तारीख व वेळ (उदा. 29/09/2026, 07:45 PM)
+      const now = new Date();
+      const printDateStr = now.toLocaleDateString('en-GB') + ', ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
       const isEn = (currentLang === 'en');
 
       const allowances = isEn ? [
@@ -2671,9 +2674,8 @@
       `;
 
       const footerNote = isEn ? 
-        'This is a system-generated salary slip and does not require a physical signature.' : 
-        'हे संगणक प्रणालीद्वारे तयार केलेले वेतन पत्रक असल्याने यावर स्वाक्षरीची आवश्यकता नाही.';
-
+        `This is a system-generated salary slip and does not require a physical signature.<br><span style="font-size:9px; color:#94a3b8;">Printed / Downloaded on: ${printDateStr}</span>` : 
+        `हे संगणक प्रणालीद्वारे तयार केलेले वेतन पत्रक असल्याने यावर स्वाक्षरीची आवश्यकता नाही.<br><span style="font-size:9px; color:#94a3b8;">डाऊनलोड / प्रिंट दिनांक व वेळ: ${printDateStr}</span>`;
       return `
         <div id="salarySlipContent" style="font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', Arial, sans-serif; font-size:12px; color:#000; background:#fff; padding:10px; width:750px; margin:0 auto; box-sizing:border-box;">
           <style>
