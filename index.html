@@ -429,7 +429,7 @@
 
     /* =========================================================
        METRICS SECTION
-       ======================================================== */
+       ========================================================= */
     .metrics-section {
       width: min(1140px, 94%);
       margin: -50px auto 40px;
@@ -1198,6 +1198,46 @@
       color: #64748b;
     }
 
+    /* Floating Scroll-to-Top Button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(15px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-to-top:hover {
+      background: var(--primary-hover);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.5);
+    }
+
+    .scroll-to-top:active {
+      transform: translateY(0) scale(0.95);
+    }
+
     @media (max-width: 900px) {
       .metrics-container { grid-template-columns: 1fr; }
       .about-portal { grid-template-columns: 1fr; }
@@ -1219,6 +1259,13 @@
       .wa-group-card { flex-direction: column; text-align: center; }
       .wa-group-info { flex-direction: column; text-align: center; }
       .btn-wa-group { width: 100%; justify-content: center; }
+      .scroll-to-top {
+        bottom: 18px;
+        right: 18px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -1720,10 +1767,24 @@
     <p class="footer-copy">© <span id="footerYear"></span> Teacher Salary Portal. All Rights Reserved.</p>
   </footer>
 
+  <!-- Floating Scroll-to-Top Button -->
+  <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top" title="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
   <!-- =========================================================
        SCRIPTS: DYNAMIC NOTICES + BILINGUAL + PDF EXPORT
        ========================================================= -->
   <script>
+    // ===== INDIAN NUMBER / CURRENCY FORMATTER =====
+    function formatIndianCurrency(num) {
+      if (num === null || num === undefined || num === '') return '0';
+      const clean = String(num).replace(/[^0-9.]/g, '');
+      const parsed = parseFloat(clean);
+      if (isNaN(parsed)) return String(num);
+      return new Intl.NumberFormat('en-IN').format(parsed);
+    }
+
     // ===== NUMBER TO WORDS ENGINE (ENGLISH & MARATHI) =====
     function numberToWordsIndian(num) {
       if (!num || isNaN(num)) return '';
@@ -2185,6 +2246,29 @@
       document.querySelectorAll('.reveal-section').forEach(el => observer.observe(el));
     });
 
+    // ===== FLOATING SCROLL-TO-TOP LOGIC =====
+    window.addEventListener('scroll', () => {
+      const scrollBtn = document.getElementById('scrollToTopBtn');
+      const salarySection = document.getElementById('salaryPortal');
+      if (!scrollBtn || !salarySection) return;
+
+      // सॅलरी स्लिप विंडोचा तळ (Bottom) स्क्रीनवरून वर निघून गेल्यानंतरच बटण दिसेल
+      const portalBottom = salarySection.getBoundingClientRect().bottom;
+
+      if (portalBottom < 0) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
     // ===== Core Authentication & API Code =====
     let slipData = null;
 
@@ -2356,9 +2440,9 @@
         <div class="summary-card" id="summaryInner" role="region" aria-live="polite" aria-label="Salary slip summary">
           <h3 style="margin:4px 0 12px; font-size:1.15rem; color:var(--text-main); font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;">${escapeHtml(r.Name || '')} <span style="font-size:0.85rem; color:var(--text-muted);">(${escapeHtml(r.EmployeeID || '')})</span></h3>
           <p style="font-size:0.85rem; margin-bottom:6px; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;"><strong>${isEn?'Month':'महिना'}:</strong> ${escapeHtml(r.Month||'')} &nbsp;&bull;&nbsp; <strong>${isEn?'Year':'वर्ष'}:</strong> ${escapeHtml(r.Year||'')}</p>
-          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;"><strong>${isEn?'Gross Salary':'एकूण वेतन'}:</strong> ₹${escapeHtml(r.GrossSalary||'0')} &nbsp;&bull;&nbsp; <strong>${isEn?'Deductions':'एकूण कपात'}:</strong> ₹${escapeHtml(r.TotalDeductions||'0')}</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;"><strong>${isEn?'Gross Salary':'एकूण वेतन'}:</strong> ₹${escapeHtml(formatIndianCurrency(r.GrossSalary))} &nbsp;&bull;&nbsp; <strong>${isEn?'Deductions':'एकूण कपात'}:</strong> ₹${escapeHtml(formatIndianCurrency(r.TotalDeductions))}</p>
           <div style="background:#f1f5f9; padding:10px; margin:12px 0; border-radius:10px; border: 1px solid var(--border-color);">
-            <h3 style="color:#16a34a; font-size:1.1rem; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;">${isEn?'Net Salary':'निव्वळ वेतन'}: ₹${escapeHtml(r.NetSalary||'0')}</h3>
+            <h3 style="color:#16a34a; font-size:1.1rem; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;">${isEn?'Net Salary':'निव्वळ वेतन'}: ₹${escapeHtml(formatIndianCurrency(r.NetSalary))}</h3>
             <p style="font-size:0.75rem; color:#475569; margin-top:2px; font-family:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;"><strong>${isEn?'In Words':'अक्षरी'}:</strong> ${escapeHtml(inWords)}</p>
           </div>
           <div class="action-group">
@@ -2452,7 +2536,9 @@
         ['एकूण वजावट','TotalDeductions']  
       ];
 
-      function getVal(key){ return slipData[key] ? slipData[key] : 0; }
+      function getVal(key){ 
+        return slipData[key] ? formatIndianCurrency(slipData[key]) : '0'; 
+      }
 
       let rows = "";
       const maxRows = Math.max(allowances.length, Math.ceil(deductions.length / 3));
@@ -2502,7 +2588,7 @@
         </div>
       `;
 
-const metaHtml = isEn ? `
+      const metaHtml = isEn ? `
         <div class="meta" style="margin:10px 0; padding:10px; background:#f9f9f9; border:1px solid #ccc; border-radius:6px; display:flex; justify-content:space-between; font-size:12px;">
           <div style="width:42%;">
             <table style="width:100%; border-collapse:collapse; border:none;">
@@ -2574,12 +2660,12 @@ const metaHtml = isEn ? `
 
       const netBoxHtml = isEn ? `
         <div class="net-box">
-          <h3>Net Salary Payable: ₹${escapeHtml(slipData.NetSalary||'0')}</h3>
+          <h3>Net Salary Payable: ₹${escapeHtml(formatIndianCurrency(slipData.NetSalary))}</h3>
           <p><strong>In Words:</strong> ${escapeHtml(dynamicInWords)}</p>
         </div>
       ` : `
         <div class="net-box">
-          <h3>निव्‍वळ वेतन: ₹${escapeHtml(slipData.NetSalary||'0')}</h3>
+          <h3>निव्‍वळ वेतन: ₹${escapeHtml(formatIndianCurrency(slipData.NetSalary))}</h3>
           <p><strong>अक्षरी:</strong> ${escapeHtml(dynamicInWords)}</p>
         </div>
       `;
