@@ -2583,28 +2583,74 @@
             </div>
           </div>
 
-          <!-- कर्मचारी माहिती ग्रीड -->
-          <div class="emp-meta-bar" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:1px 8px; border:0.8px solid #000; border-radius:3px; padding:2px 6px; margin-bottom:3px; font-size:8px; color:#000;">
-            <div><strong>कर्मचाऱ्याचे नाव:</strong> ${escapeHtml(t.Name)}</div>
-            <div><strong>शाळा / केंद्र:</strong> ${escapeHtml(t.School)} ${t.ClusterName ? `(${escapeHtml(t.ClusterName)})` : ''}</div>
-            <div><strong>शालार्थ / Emp ID:</strong> ${escapeHtml(t.Shalarth_ID || t.EmployeeID || '-')}</div>
-            <div><strong>भ.नि.नि. / PRAN No:</strong> ${escapeHtml(t.PFNo || t.PRAN || '-')}</div>
-            <div style="grid-column: 1 / -1; display:flex; align-items:center; gap:5px;">
-              <strong>PAN No:</strong> 
-              <span class="pan-box-container" style="display:inline-flex; gap:2px;">
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-                <span class="pan-cell" style="display:inline-block; width:10px; height:12px; border:0.8px solid #000; background:#fff;"></span>
-              </span>
-            </div>
-          </div>
+          <!-- कर्मचारी माहिती ग्रीड (बॅकग्राउंड कलर पूर्णपणे काढून पांढरा केलेला कोड) -->
+<div class="emp-meta-bar" style="display: flex; justify-content: space-between; gap: 16px; border: 0.8px solid #000; border-radius: 3px; padding: 4px 10px; margin-bottom: 4px; font-size: 8px; color: #000; background: #fff !important;">
+  
+  <!-- डावी बाजू (टेबल १) -->
+  <table style="border-collapse: collapse; border: none !important; font-size: 8px; line-height: 1.45; text-align: left; background: transparent !important;">
+    <tr style="border: none !important; background: transparent !important;">
+      <td style="border: none !important; font-weight: 700; white-space: nowrap; padding: 1px 0; background: transparent !important;">कर्मचाऱ्याचे नाव</td>
+      <td style="border: none !important; font-weight: 700; padding: 1px 4px; text-align: center; background: transparent !important;">:</td>
+      <td style="border: none !important; padding: 1px 0; white-space: nowrap; background: transparent !important;">${escapeHtml(t.Name)}</td>
+    </tr>
+    <tr style="border: none !important; background: transparent !important;">
+      <td style="border: none !important; font-weight: 700; white-space: nowrap; padding: 1px 0; background: transparent !important;">शालार्थ / Emp ID</td>
+      <td style="border: none !important; font-weight: 700; padding: 1px 4px; text-align: center; background: transparent !important;">:</td>
+      <td style="border: none !important; padding: 1px 0; white-space: nowrap; background: transparent !important;">${escapeHtml(t.Shalarth_ID || t.EmployeeID || '-')}</td>
+    </tr>
+    <tr style="border: none !important; background: #ffffff !important;">
+      <td style="border: none !important; font-weight: 700; white-space: nowrap; padding: 1px 0; vertical-align: middle; background: #ffffff !important;">PAN No</td>
+      <td style="border: none !important; font-weight: 700; padding: 1px 4px; text-align: center; vertical-align: middle; background: #ffffff !important;">:</td>
+      <td style="border: none !important; padding: 1px 0; vertical-align: middle; background: #ffffff !important;">
+        <span style="display: inline-flex; gap: 2px; vertical-align: middle;">
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- उजवी बाजू (टेबल २) -->
+  <table style="border-collapse: collapse; border: none !important; font-size: 8px; line-height: 1.45; text-align: left; background: transparent !important;">
+    <tr style="border: none !important; background: transparent !important;">
+      <td style="border: none !important; font-weight: 700; white-space: nowrap; padding: 1px 0; background: transparent !important;">शाळा / केंद्र</td>
+      <td style="border: none !important; font-weight: 700; padding: 1px 4px; text-align: center; background: transparent !important;">:</td>
+      <td style="border: none !important; padding: 1px 0; white-space: nowrap; background: transparent !important;">${escapeHtml(t.School)}${t.ClusterName ? `(${escapeHtml(t.ClusterName)})` : ''}</td>
+    </tr>
+    <tr style="border: none !important; background: transparent !important;">
+      <td style="border: none !important; font-weight: 700; white-space: nowrap; padding: 1px 0; background: transparent !important;">भ.नि.नि. / PRAN</td>
+      <td style="border: none !important; font-weight: 700; padding: 1px 4px; text-align: center; background: transparent !important;">:</td>
+      <td style="border: none !important; padding: 1px 0; white-space: nowrap; background: transparent !important;">${escapeHtml(t.PFNo || t.PRAN || '-')}</td>
+    </tr>
+    <tr style="border: none !important; background: #ffffff !important;">
+      <td style="border: none !important; font-weight: 700; white-space: nowrap; padding: 1px 0; vertical-align: middle; background: #ffffff !important;">TAN No</td>
+      <td style="border: none !important; font-weight: 700; padding: 1px 4px; text-align: center; vertical-align: middle; background: #ffffff !important;">:</td>
+      <td style="border: none !important; padding: 1px 0; vertical-align: middle; background: #ffffff !important;">
+        <span style="display: inline-flex; gap: 2px; vertical-align: middle;">
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+          <span style="display:inline-block; width:10px; height:12px; border:0.8px solid #000 !important; background:#fff !important; box-sizing:border-box;"></span>
+        </span>
+      </td>
+    </tr>
+  </table>
+
+</div>
 
           <!-- १२ महिन्यांचा मुख्य वेतन तक्ता -->
           <div style="overflow-x:auto; margin-bottom:3px; border:0.8px solid #000; border-radius:3px;">
@@ -2753,26 +2799,33 @@
           </div>
 
           <!-- ७. कर्मचारी स्वयंघोषणा (Self Declaration) -->
-          <div style="border:0.6px dashed #000; padding:2px 5px; font-size:6.8px; line-height:1.2; text-align:center; margin-bottom:4px; background:#fafafa;">
-            मी असे प्रमाणित व घोषित करतो/करते की, वरील करगणनेची मी पडताळणी केली असून वित्तीय वर्ष २०२६-२७ करिता मी 
-            <strong>जुनी कर प्रणाली (Old Regime) [ &nbsp; ] &nbsp;/&nbsp; नवीन कर प्रणाली (New Regime) [ &nbsp; ]</strong> 
-            (लागू पर्यायावर ✓ करावे) चा अधिकृतपणे स्वीकार करत आहे.
-          </div>
+<div style="border: 0.8px dashed #444; border-radius: 3px; padding: 5px 8px; font-size: 7.2px; line-height: 1.4; text-align: center; margin-top: 6px; margin-bottom: 8px; background: #fafafa;">
+  मी असे प्रमाणित व घोषित करतो/करते की, वरील करगणनेची मी पडताळणी केली असून वित्तीय वर्ष <strong>${fyDisplay}</strong> करिता मी 
+  <strong>जुनी कर प्रणाली (Old Regime) <span style="display:inline-block; width:10px; height:10px; border:1px solid #000; vertical-align:middle; margin:0 3px;"></span> / 
+  नवीन कर प्रणाली (New Regime) <span style="display:inline-block; width:10px; height:10px; border:1px solid #000; vertical-align:middle; margin:0 3px;"></span></strong> 
+  (लागू पर्यायावर ✓ करावे) चा अधिकृतपणे स्वीकार करत आहे.
+</div>
 
           <!-- ८. स्वाक्षरी व शिक्का ब्लॉक -->
-          <div class="sign-block" style="display:flex; justify-content:space-between; margin-top:8px; padding:0 20px; font-size:7.5px; font-weight:700;">
-            <div style="text-align:center; min-width:130px;">
-              <div style="border-top:0.8px dotted #000; margin-bottom:2px;"></div>
-              <div>कर्मचाऱ्याची स्वाक्षरी</div>
-            </div>
-            <div style="text-align:center; min-width:170px;">
-              <div style="border-top:0.8px dotted #000; margin-bottom:2px;"></div>
-              <div>मुख्याध्यापक स्वाक्षरी व शिक्का</div>
-            </div>
-          </div>
+<div class="sign-block" style="display:flex; justify-content:space-between; margin-top:10px; margin-bottom:28px; padding:0 20px; font-size:7.5px; font-weight:700;">
+  
+  <!-- डावी बाजू: कर्मचारी स्वाक्षरी व नाव -->
+  <div style="text-align:center; min-width:140px;">
+    <div style="border-top:0.8px dotted #000; margin-bottom:2px;"></div>
+    <div>कर्मचाऱ्याची स्वाक्षरी</div>
+    <div style="font-weight:600; margin-top:2px;">(${escapeHtml(t.Name || '')})</div>
+  </div>
+
+  <!-- उजवी बाजू: मुख्याध्यापक स्वाक्षरी व शिक्का -->
+  <div style="text-align:center; min-width:170px;">
+    <div style="border-top:0.8px dotted #000; margin-bottom:2px;"></div>
+    <div>मुख्याध्यापक स्वाक्षरी व शिक्का</div>
+  </div>
+
+</div>
 
           <!-- ९. करगणनेबाबत अधिकृत टीप (Disclaimer) -->
-          <div style="text-align:center; font-size:6px; color:#555; margin-top:3px; border-top:0.5px solid #ccc; padding-top:1px;">
+          <div style="text-align:center; font-size:8px; color:#555; margin-top:3px; border-top:0.5px dashed #444; padding-top:3px;">
             *टीप: सदर विवरण पत्र हे संगणकीय प्रणालीद्वारे तयार केलेले असून, वैयक्तिक कर कपातीचे प्रत्यक्ष पुरावे, इतर उत्पन्न व बदलत्या आयकर नियमांनुसार अंतिम करगणनेत तफावत आढळू शकते.
           </div>
 
