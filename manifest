@@ -1,7 +1,7 @@
 {
   "id": "./",
   "name": "Teacher Salary Slip Portal",
-  "short_name": "वेतन पत्रक",
+  "short_name": "Salary Slip",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -9,14 +9,16 @@
   "theme_color": "#2563eb",
   "icons": [
     {
-      "src": "graduation-hat.png",
+      "src": "new-salary-icon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "graduation-hat.png",
+      "src": "new-salary-icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
