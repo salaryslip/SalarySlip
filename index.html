@@ -3408,26 +3408,14 @@
       deferredPrompt = null;
     });
 
-    // INLINE SERVICE WORKER
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        const swScript = `
-          self.addEventListener('install', (e) => self.skipWaiting());
-          self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
-          self.addEventListener('fetch', (e) => {
-            if (e.request.method === 'GET') {
-              e.respondWith(fetch(e.request).catch(() => new Response('Offline')));
-            }
-          });
-        `;
-        const blob = new Blob([swScript], { type: 'application/javascript' });
-        const swBlobUrl = URL.createObjectURL(blob);
-        navigator.serviceWorker.register(swBlobUrl).catch(() => {
-          navigator.serviceWorker.register('./sw.js').catch(() => {});
-        });
-      });
-    }
-
+    // SERVICE WORKER REGISTRATION
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js?v=3')
+      .then((reg) => console.log('SW Registered:', reg.scope))
+      .catch((err) => console.log('SW Registration Failed:', err));
+  });
+}
     // SCROLL TO TOP & EYE TOGGLES
     const passwordInput = document.getElementById("password");
     const eyeIcon = document.getElementById("eyeIcon");
