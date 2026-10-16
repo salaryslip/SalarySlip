@@ -2,7 +2,7 @@
 // Service Worker for Teacher Salary Slip Portal
 // =========================================================
 
-const CACHE_NAME = 'salary-portal-v2';
+const CACHE_NAME = 'salary-portal-v3';
 
 // इन्स्टॉलेशन इव्हेंट
 self.addEventListener('install', (event) => {
